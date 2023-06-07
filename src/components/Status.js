@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Status = ({ gameStatus, onRestart }) => {
+const Status = ({ gameStatus, onRestart, word }) => {
     const [showHelp, setShowHelp] = useState(false);
     const [helpContent, setHelpContent] = useState('');
 
@@ -28,7 +28,7 @@ const Status = ({ gameStatus, onRestart }) => {
         if (gameStatus === 'win') {
             return <h2>Congratulations! You won!</h2>;
         } else if (gameStatus === 'loss') {
-            return <h2>Oops! You lost!</h2>;
+            return <h2>Oops! You lost!<br/>The word was: {word}</h2>;
         } else {
             return null;
         }

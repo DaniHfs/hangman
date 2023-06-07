@@ -11,7 +11,7 @@ const App = () => {
   const [incorrectGuesses, setIncorrectGuesses] = useState(0); // Stores the count of incorrect guesses
   const [gameStatus, setGameStatus] = useState('playing'); // Stores the current game status
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchWord(); // Fetches a random word from the dictionary when the component mounts
   }, []);
 
@@ -19,19 +19,20 @@ const App = () => {
     try {
       const response = await fetch('/dictionary.txt'); // Fetches the dictionary file
       const text = await response.text(); // Extracts the text content from the response
-      const lines = text.split('\n'); // Splits the text into an array of lines
-      const words = lines.slice(38)
+      const lines = text.split(/\r?\n|\r/);; // Splits the text into an array of lines
+      const words = lines
+        .slice(38)
         .filter((word) => /^[a-zA-Z]+$/.test(word)) // Filters out non-alphabetic words
         .map((word) => word.toUpperCase()) // Converts all words to uppercase
         .filter((word) => word.length > 0); // Filters out empty words
-      
+  
       if (words.length === 0) {
         throw new Error('No valid words found in the dictionary.'); // Throws an error if no valid words are found
       }
   
       const randomIndex = Math.floor(Math.random() * words.length); // Generates a random index within the range of words array
       const randomWord = words[randomIndex]; // Retrieves a random word from the words array
-      
+  
       setWord(randomWord); // Sets the randomly chosen word
       setGuessedLetters([]); // Resets the guessed letters array
       setIncorrectGuesses(0); // Resets the count of incorrect guesses
@@ -59,17 +60,17 @@ const App = () => {
     fetchWord(); // Fetches a new random word from the dictionary
   };
 
-  const checkGameStatus = () => {
-    if (incorrectGuesses >= 10) {
-      setGameStatus('loss'); // Sets the game status to 'loss' if the count of incorrect guesses reaches 10
-    } else if (word.split('').every((letter) => guessedLetters.includes(letter))) {
-      setGameStatus('win'); // Sets the game status to 'win' if all letters in the word are guessed correctly
-    }
-  };
-
   useEffect(() => {
+    const checkGameStatus = () => {
+      if (incorrectGuesses >= 10) { 
+        setGameStatus('loss'); // Sets the game status to 'loss' if the count of incorrect guesses reaches 10
+      } else if (word.split('').every((letter) => guessedLetters.includes(letter))) {
+        setGameStatus('win'); // Sets the game status to 'win' if all letters in the word are guessed correctly
+      }
+    };
+
     checkGameStatus(); // Checks the game status whenever the guessedLetters array is updated
-  }, [guessedLetters]);
+  }, [guessedLetters, incorrectGuesses, word]);
 
   return (
     <div className="app">
@@ -77,7 +78,7 @@ const App = () => {
       <Hangman incorrectGuesses={incorrectGuesses} /> {/* Renders the hangman image */}
       <Word word={word} guessedLetters={guessedLetters} /> {/* Renders the word with guessed letters */}
       <Keyboard onClick={handleGuess} guessedLetters={guessedLetters} incorrectGuesses={incorrectGuesses} /> {/* Renders the keyboard for letter selection */}
-      <Status gameStatus={gameStatus} onRestart={handleRestart} /> {/* Renders the game status and restart button */}
+      <Status gameStatus={gameStatus} onRestart={handleRestart} word={word} /> {/* Renders the game status and restart button */}
     </div>
   );
 };

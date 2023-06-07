@@ -5,6 +5,7 @@ const Status = ({ gameStatus, onRestart }) => {
     const [helpContent, setHelpContent] = useState('');
 
     useEffect(() => {
+        // Fetch help content when the component mounts
         const fetchHelpContent = async () => {
             try {
                 const response = await fetch('/rules.md');
@@ -18,10 +19,12 @@ const Status = ({ gameStatus, onRestart }) => {
     }, []);
 
     const toggleHelp = () => {
+        // Toggle the display of help content
         setShowHelp(!showHelp);
     };
 
     const renderMessage = () => {
+        // Render the appropriate message based on game status
         if (gameStatus === 'win') {
             return <h2>Congratulations! You won!</h2>;
         } else if (gameStatus === 'loss') {
@@ -32,6 +35,7 @@ const Status = ({ gameStatus, onRestart }) => {
     };
 
     const renderHelp = () => {
+        // Render the help content if showHelp is true
         if (showHelp) {
             return (
                 <div className="help">
@@ -46,10 +50,10 @@ const Status = ({ gameStatus, onRestart }) => {
 
     return (
         <div className="status">
-            {renderMessage()}
-            <button className="restart" onClick={onRestart}>Restart</button>
-            <button className="help" onClick={toggleHelp}>{showHelp ? 'Hide Help' : 'Show Help'}</button>
-            {renderHelp()}
+            {renderMessage()} {/* Render game status message */}
+            <button className="restart" onClick={onRestart}>Restart</button> {/* Restart button */}
+            <button className="help" onClick={toggleHelp}>{showHelp ? 'Hide Help' : 'Show Help'}</button> {/* Toggle help button */}
+            {renderHelp()} {/* Render help content */}
         </div>
     );
 };

@@ -1,3 +1,5 @@
+/* Styles for the Hangman app */
+
 .app {
     text-align: center;
     padding: 20px;
@@ -21,7 +23,7 @@ h2 {
 }
 
 .letter {
-    display: inline=block;
+    display: inline-block;
     margin: 4px;
     font-size: 20px;
     border-bottom: 1px solid #000;

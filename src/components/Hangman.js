@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Hangman = ({ incorrectGuesses }) => {
+    // Array of hangman images
     const hangmanImages = [
         require('../assets/hangman0.GIF'),
         require('../assets/hangman1.GIF'),
@@ -17,7 +18,8 @@ const Hangman = ({ incorrectGuesses }) => {
 
     return (
         <div className="hangman">
-            <img src={hangmanImages[incorrectGuesses]} alt="hangman"/>
+            {/* Display the hangman image corresponding to the number of incorrect guesses */}
+            <img src={hangmanImages[incorrectGuesses]} alt="hangman" />
         </div>
     );
 };

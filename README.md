@@ -26,15 +26,19 @@ The objective of the game is to guess the word before making too many incorrect 
 
 To run the Hangman game on your local machine, follow these steps:
 
-1. Make sure you have Node.js installed on your machine.
+1. Make sure you have Node.js and Git installed on your machine.
 
-2. Clone this repository:
+2. Open the Command Prompt and navigate into a folder of your choice. For example:
+```bash
+cd C:\Users\User\Desktop\test
+```
 
+3. Once inside the chosen folder, run this command to clone this repository:
 ```bash
 git clone https://github.com/DaniHfs/hangman.git
 ```
-3. Navigate to the project directory:
 
+4. Once the cloning completes, navigate to the project directory:
 ```bash
 cd hangman
 ```
@@ -48,7 +52,10 @@ npm install
 ```bash
 npm start
 ```
+Don't close the terminal window at this point.
 
 6. Open your web browser and visit http://localhost:3000 to play the game.
+
+7. Once you're finished, got back to the terminal and hit ctrl+c. You will be prompted to end a batch job. Input 'y' then enter. The server is now shut down and you can close the terminal window.
 
 Have fun playing Hangman!

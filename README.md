@@ -48,14 +48,14 @@ cd hangman
 npm install
 ```
 
-5. Start the server:
+5. Once the dependencies are installed, start the server:
 ```bash
 npm start
 ```
   Don't close the terminal window at this point.
 
-6. Open your web browser and visit http://localhost:3000 to play the game.
+6. A browser window for the game should open automatically, but if it doesn't, open your web browser and visit http://localhost:3000 to play the game.
 
-7. Once you're finished, got back to the terminal and hit ctrl+c. You will be prompted to end a batch job. Input 'y' then enter. The server is now shut down and you can close the terminal window.
+7. Once you're finished, go back to the terminal and hit ctrl+c. You will be prompted to end a batch job. Input 'y' then enter. The server is now shut down and you can close the terminal window.
 
 Have fun playing Hangman!

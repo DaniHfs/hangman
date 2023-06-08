@@ -52,7 +52,7 @@ npm install
 ```bash
 npm start
 ```
-Don't close the terminal window at this point.
+  Don't close the terminal window at this point.
 
 6. Open your web browser and visit http://localhost:3000 to play the game.
 
